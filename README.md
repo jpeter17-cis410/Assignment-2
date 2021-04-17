@@ -1,6 +1,6 @@
 # Assignment 2
 
-[Jacob Petersen](github.com/jpeter17)
+[Jacob Petersen](https://github.com/jpeter17)
  
 ## Dot Product 
 
