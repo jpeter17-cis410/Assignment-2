@@ -6,7 +6,7 @@ public class FacePlayer : MonoBehaviour
 {
     public GameObject player;
     public float minimum = 0.0f;
-    public float maximum = 0.5f; 
+    public float maximum = 1.0f; 
 
     private Vector3 _angles;
 
@@ -48,7 +48,7 @@ public class FacePlayer : MonoBehaviour
         t += 0.1f * Time.deltaTime;
 
         // If interpolater >= .9f reverse direction of floating animation
-        if (t >= .9f)
+        if (t > 1.0f)
         {
             float temp = maximum;
             maximum = minimum;
