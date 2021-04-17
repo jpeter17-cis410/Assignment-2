@@ -5,12 +5,19 @@ using UnityEngine;
 public class FacePlayer : MonoBehaviour
 {
     public GameObject player;
+    public float minimum = 0.0f;
+    public float maximum = 0.5f; 
 
     private Vector3 _angles;
+
+    Rigidbody m_Rigidbody;
+
+    static float t = 0.0f; 
 
     void Start()
     {
         _angles = new Vector3(0.0f, 1.0f, 0.0f);
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
@@ -29,5 +36,24 @@ public class FacePlayer : MonoBehaviour
 
         _angles.y = angle;
         transform.eulerAngles = _angles;
+
+        
+    }
+
+    void Update()
+    {
+        transform.position = new Vector3(transform.position.x, Mathf.Lerp(minimum, maximum, t), transform.position.z);
+
+        // Increment interpolater based on gametime
+        t += 0.1f * Time.deltaTime;
+
+        // If interpolater >= .9f reverse direction of floating animation
+        if (t >= .9f)
+        {
+            float temp = maximum;
+            maximum = minimum;
+            minimum = temp;
+            t = 0.0f;
+        }
     }
 }
